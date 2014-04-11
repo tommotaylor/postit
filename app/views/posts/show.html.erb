@@ -1,0 +1,26 @@
+
+<p>
+<% @post.categories.each do |category| %>
+      <span class='badge'><%= category.name %></span>
+<%end%>
+</p>
+<p class="lead"><%= link_to @post.title.capitalize, @post.url %></p>
+<hr>
+<p><%=@post.description%></p>
+<hr>
+<h5>Comments:</h5>
+
+<% @post.comments.each do |comment| %>
+<div class="row">
+  <div class='span8 well'>
+    <p>"<%= comment.body  %>"</p>
+  </div>
+</div>
+<% end %>
+
+
+
+
+
+
+
