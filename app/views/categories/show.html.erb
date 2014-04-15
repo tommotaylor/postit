@@ -1,0 +1,7 @@
+<% posts_link = link_to 'All Posts', posts_path %>
+
+<%= render 'shared/content_title', title: "#{posts_link} &raquo; #{@category.name.capitalize}".html_safe %>
+
+<% @category.posts.each do |post| %>
+     <%= render 'posts/posts', post: post%>
+<% end %>
