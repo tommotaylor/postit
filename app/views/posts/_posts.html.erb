@@ -29,7 +29,7 @@
     </p>
     <h4><%=link_to post.title.capitalize, post_path(post)%></h4>
     <p><%=post.description%></p>
-    <p><span class='quiet'>posted by: </span></p>
+    <p><span class='quiet'>posted by: </span><%= link_to "#{post.creator.username}", user_path(post.creator)%></p>
     <p><small><%= link_to "#{post.comments.size} comments", post_path(post)%></small></p>
   </div>
 </div>
