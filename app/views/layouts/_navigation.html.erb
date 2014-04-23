@@ -2,15 +2,13 @@
   <li>
     <%= link_to "Postit!", root_path, :class => 'brand' %>
   </li>
-  <li>
-    <%= link_to 'link', '' %>
-  </li>
 </ul>
 
 <div class='btn-group nav_item'>
   <%= link_to '#', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown' do %> 
   Categories <span class='caret'></span>
   <% end %>
+  
   <ul class='dropdown-menu'>
   	<% Category.all.each do |category| %>
   <li><%= link_to category.name, category_path(category) %></li>
@@ -22,11 +20,26 @@
   	 New Category
   	<%end%>
   </ul>
-
-
    new_category_path, class: 'btn btn-success btn-small' %>
 </div>
 
 <div class='nav_item'>
   <%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small' %>
 </div>
+
+<ul class="nav">
+  <% if logged_in? %>
+  <li>Hi <%= current_user.username %></li>
+  <li>
+    <%= link_to 'Logout', logout_path %>
+  </li>
+  <% else %>
+  <li>
+    <%= link_to 'Login', login_path %>
+  </li>
+  <li>
+    <%= link_to 'Signup', 'register' %>
+  </li>
+   <% end %>
+</ul>
+

@@ -1,0 +1,29 @@
+<%= render 'shared/content_title', title: "User Profile for: #{@user.username.capitalize}" %>
+
+<div>
+	<ul>
+		<li>Username: <%=@user.username.capitalize%></li>
+		<li>Member since: <%=nice_time(@user.created_at)%></li>
+		<% if !logged_in? %>
+			<%= link_to '[Edit User]', edit_user_path(@user) %>
+			<% end %>
+	</ul>
+</div>
+<br>
+<h5><%=@user.username.capitalize%>'s Comments:</h5>
+
+<% @user.comments.each do |comment| %>
+<div class="row">
+  <div class='span8 well'>
+    <p>"<%= comment.body  %>" on <%=link_to comment.post.title, post_path(comment.post)%></p>
+    <p>By <%= link_to comment.creator.username, user_path(comment.creator) %> at <%= nice_time(comment.created_at) %></p>
+  </div>
+</div>
+<% end %>
+
+<h5><%=@user.username.capitalize%>'s Posts:</h5>
+
+<% @user.posts.each do |post| %>
+  <%= render 'posts/posts', post: post %>
+<% end %>
+
