@@ -10,7 +10,8 @@ before_action :require_user
       flash[:notice] = "Your comment was saved"
       redirect_to post_path(@post)
   	else
-  	  render 'posts/show'
+      flash[:error] = "You've got to say something in your comment!"
+  	  redirect_to :back
   	end
   end
 
