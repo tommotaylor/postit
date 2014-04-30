@@ -2,6 +2,9 @@
 
 <%= render 'shared/content_title', title: posts_link %>
 
+<div>
+ 
 <% @posts.each do |post| %>
   <%= render 'posts', post: post %>
 <% end %>
+</div>

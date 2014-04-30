@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def nice_time(ts)
-  	ts.strftime("%I:%M%P on %m/%d/%y")
+  	ts.strftime("%I:%M%P on %e %b, %Y")
   end
 
 end

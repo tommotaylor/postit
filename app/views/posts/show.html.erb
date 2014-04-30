@@ -6,7 +6,7 @@
 <p>
 <% @post.categories.each do |category| %>
       <span class='badge'><%= category.name %></span>
-<%end%>
+<%end%><%= link_to "+", edit_post_path(@post) %>
 </p>
 <p class="lead"><%= link_to @post.title.capitalize, fix_url(@post.url) %></p>
 <hr>
@@ -45,8 +45,8 @@
 
   </div>
   <div class='span8 well'>
-    <p>"<%= comment.body %>"</p>
-    <p>By <%= link_to comment.creator.username, user_path(comment.creator) %> at <%= nice_time(comment.created_at) %></p>
+    <em>"<%= comment.body %>"</em>
+    <p><span class="quiet">by <%= link_to comment.creator.username, user_path(comment.creator) %> at <%= nice_time(comment.created_at) %></span></p>
   </div>
 <% end %>
 

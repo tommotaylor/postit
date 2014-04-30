@@ -3,7 +3,7 @@
 <div class='well'>
 <%= form_for @post do |f|%>
 	<%=f.label :title %>
-	<%=f.text_field :title %>
+	<%=f.text_field :title, autofocus: true %>
 	<%=f.label :url %>
 	<%=f.text_area :url %>
 	<%=f.label :description %>

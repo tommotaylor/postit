@@ -22,11 +22,9 @@
 
 
     <div class='span8 well'>
-    <p>
    	  <% post.categories.each do |category| %>
         <span class='badge'><%= link_to category.name, category_path(category) %></span>
       <%end%>
-    </p>
     <h4><%=link_to post.title.capitalize, post_path(post)%></h4>
     <p><%=post.description%></p>
     <p><span class='quiet'>posted by: </span><%= link_to "#{post.creator.username}", user_path(post.creator)%></p>

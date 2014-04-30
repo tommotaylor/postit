@@ -1,3 +1,10 @@
-<%= render 'shared/content_title', title: "Sign Up" %>
 
+<% if logged_in? %>
+  <%= render 'shared/content_title', title: "Please #{link_to "logout", logout_path} before signing up as a new user".html_safe %>
+<% else %>
+<% end %>
+
+<% if !logged_in? %>
+<%= render 'shared/content_title', title: "Sign Up" %>
 <%= render 'form' %>
+<% end %>

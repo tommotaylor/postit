@@ -5,7 +5,7 @@
 <div class='well'>
 <%= form_for @category do |f| %>
   <%= f.label :name %>
-  <%= f.text_field :name %><br>
+  <%= f.text_field :name, autofocus: true %><br>
   <%= f.submit (@category.new_record? ? 'Create Category' : 'Update Category'),  class: 'btn btn-primary' %>
   <% end %>
 </div>
