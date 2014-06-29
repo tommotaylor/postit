@@ -1,13 +1,13 @@
 class CategoriesController < ApplicationController
 
 before_action :require_user, only: [:new, :create]
+before_action :set_category, only: [:show, :edit, :update]
 
  def index
  	@categories = Category.all
  end
 
  def show
- 	@category = Category.find(params[:id])
  end
 
  def new
@@ -33,6 +33,9 @@ before_action :require_user, only: [:new, :create]
 
 private
 
+  def set_category
+  	@category = Category.find_by_slug(params[:id])
+  end
 
 
 end

@@ -11,6 +11,8 @@ class Post < ActiveRecord::Base;
 
   has_many :votes, as: :voteable
 
+  before_save :create_slug
+
   def total_votes
   	self.up_votes - self.down_votes
   end
@@ -22,5 +24,15 @@ class Post < ActiveRecord::Base;
   def down_votes
     self.votes.where(vote: false).size
   end
+
+  def create_slug
+    self.slug = self.title.parameterize
+  end
+
+  def to_param
+    slug
+  end
+
+  
 
 end

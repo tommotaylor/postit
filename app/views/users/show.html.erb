@@ -14,14 +14,7 @@
 <br>
 <p>Comments by: <%=@user.username%></p>
 
-<% @user.comments.each do |comment| %>
-<div class="row">
-  <div class='span8 well'>
-    <em>"<%= comment.body  %>" -</em> <%=link_to comment.post.title, post_path(comment.post)%></p>
-    <p class="quiet">By <%= link_to comment.creator.username, user_path(comment.creator) %> at <%= nice_time(comment.created_at) %></p>
-  </div>
-</div>
-<% end %>
+<%= render 'comments/comments' %>
 
 <p>Posts by: <%=@user.username%></p>
 

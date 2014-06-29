@@ -42,13 +42,21 @@ class PostsController < ApplicationController
 
   def vote
     vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
-      if vote.valid?
-        flash[:notice] = "Your vote was counted"
-      else
-        flash[:error] = "You can only vote once per post or comment"
-      end
-    redirect_to :back
+
+    respond_to do |format|
+      format.html do
+        if vote.valid? 
+          flash[:notice] = "Your vote was counted"
+        else
+          flash[:error] = "you can only vote once per post"
+        end
+          redirect_to :back
+        end
+
+      format.js
+      
   end
+end
 
 
 
@@ -57,11 +65,11 @@ class PostsController < ApplicationController
 private
 
   def post_params
-    params.require(:post).permit(:title, :url, :description, category_ids: [])
+    params.require(:post).permit(:title, :url, :slug, :description, category_ids: [])
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by_slug(params[:id])
   end
 
 

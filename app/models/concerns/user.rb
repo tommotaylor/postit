@@ -8,5 +8,17 @@ class User < ActiveRecord::Base;
 
   has_many :votes
 
+  before_save :create_slug
+
+  def create_slug
+  	self.slug = self.username.parameterize
+  end
+
+
+  def to_param
+  	slug
+  end
+
+
   
 end
