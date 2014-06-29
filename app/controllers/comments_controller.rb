@@ -1,12 +1,14 @@
 class CommentsController < ApplicationController
 
 before_action :require_user
+before_action :set_post
 
   def create
-  	@post = Post.find(params[:post_id])
-  	@comment = @post.comments.build(params.require(:comment).permit(:body))
+  	@comment = Comment.new(params.require(:comment).permit(:body))
+    @comment.post = @post
     @comment.creator = current_user
-  	if @comment.save
+  	
+    if @comment.save
       flash[:notice] = "Your comment was saved"
       redirect_to post_path(@post)
   	else
@@ -16,8 +18,8 @@ before_action :require_user
   end
 
   def vote
-    comment = Comment.find(params[:id])
-    Vote.create(voteable: comment, creator: current_user, vote: params[:vote])
+    @comment = Comment.find(params[:id])
+    vote = Vote.create(voteable: @comment, creator: current_user, vote: params[:vote])
 
     respond_to do |format|
       format.html do
@@ -28,10 +30,15 @@ before_action :require_user
         end
          redirect_to :back
        end
-       format.js do
-       end
-       
+       format.js
+       end 
   end
 
 
+private
+
+  def set_post
+    @post = Post.find_by(slug: params[:post_id])
+  end
 end
+

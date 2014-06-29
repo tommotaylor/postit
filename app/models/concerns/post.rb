@@ -33,6 +33,4 @@ class Post < ActiveRecord::Base;
     slug
   end
 
-  
-
 end

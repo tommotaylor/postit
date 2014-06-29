@@ -35,7 +35,7 @@
     <% end %>
     <% end %>
 
-    <span id="comment_<%=comment.total_votes%>_votes"><%= comment.total_votes %> votes</p>
+    <span id="comment_<%=comment.id%>_votes"><%= comment.total_votes %> votes</p>
     
     <% if logged_in? %>
     <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post', remote: true do %>
