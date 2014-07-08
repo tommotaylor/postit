@@ -28,30 +28,39 @@
 
 <% @post.comments.each do |comment| %>
 <div class="row">
-	<div class="span0 well text-center">
-    <% if logged_in? %>
-    <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post', remote: true do %>
-    <i class="icon-arrow-up"></i>
-    <% end %>
-    <% end %>
-<br>
-    <span id="comment_<%=comment.id%>_votes"><%= comment.total_votes %> votes</span>
-<br>
-    <% if logged_in? %>
-    <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post', remote: true do %>
-    <i class="icon-arrow-down"></i>
-    <% end %>
-    <% end %>
-    <% if !logged_in? %>
-    <%= link_to "Login to vote", new_user_path %>
-    <% end %>
 
-  </div>
+  	<div class="span0 well text-center">
+      <% if logged_in? %>
+        <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post', remote: true do %>
+          <i class="icon-arrow-up"></i>
+        <% end %>
+      <% end %>
+
+    <br>
+
+      <span id="comment_<%=comment.id%>_votes"><%= comment.total_votes %> votes</span>
+
+    <br>
+
+      <% if logged_in? %>
+        <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post', remote: true do %>
+          <i class="icon-arrow-down"></i>
+        <% end %>
+      <% end %>
+      
+      <% if !logged_in? %>
+       <p><%= link_to "Login to vote", new_user_path %><p>
+      <% end %>
+
+    </div>
+
+
   <div class='span8 well'>
-    <em>"<%= comment.body %>"</em>
+    <p><em>"<%= comment.body %>"</em></p>
     <p>
       <span class="quiet">by <%= link_to comment.creator.username, user_path(comment.creator) %> at <%= nice_time(comment.created_at) %></span>
     </p>
+  </div>
   </div>
 <% end %>
 
