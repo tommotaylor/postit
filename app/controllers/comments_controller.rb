@@ -19,11 +19,11 @@ before_action :set_post
 
   def vote
     @comment = Comment.find(params[:id])
-    vote = Vote.create(voteable: @comment, creator: current_user, vote: params[:vote])
+    @vote = Vote.create(voteable: @comment, creator: current_user, vote: params[:vote])
 
     respond_to do |format|
       format.html do
-        if vote.valid?
+        if @vote.valid?
          flash[:notice] = "Your vote was counted"
        else
           flash[:error] = "You can only vote once per comment"
