@@ -40,7 +40,7 @@ before_action :set_user, only: [:show, :edit, :update]
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :id, :slug)
+    params.require(:user).permit(:username, :password, :id, :slug, :time_zone)
   end
 
   def set_user

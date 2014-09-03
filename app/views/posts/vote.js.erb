@@ -1,6 +1,6 @@
 <% if @vote.valid? %>
 $('#post_<%= @post.id %>_votes').html('<%= @post.total_votes %> votes')
-alert("Your vote was counted");
+alert("Your vote was counted with ajax");
 <% else %>
 alert("You can only vote once per post");
 <% end %>

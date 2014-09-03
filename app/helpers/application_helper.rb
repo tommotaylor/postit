@@ -5,7 +5,11 @@ module ApplicationHelper
   end
 
   def nice_time(ts)
-  	ts.strftime("on %e %b, %Y at %I:%M%P")
+  	if logged_in? and !current_user.time_zone.blank?
+  		ts = ts.in_time_zone(current_user.time_zone)
+  	end
+
+  	ts.strftime("on %e %b, %Y at %I:%M%P %Z")
   end
 
 end
