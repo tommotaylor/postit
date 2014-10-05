@@ -18,7 +18,13 @@ class User < ActiveRecord::Base;
   def to_param
   	slug
   end
+ 
+  def admin?
+    self.role == 'admin'
+  end
 
+  def moderator?
+    self.role == 'moderator'
+  end
 
-  
 end
