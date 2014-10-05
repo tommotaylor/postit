@@ -13,8 +13,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json {render :json @post}
-      format.xml {render :xml @post}
+      
     end
 
   end
